@@ -1,24 +1,12 @@
-# README
+# Team
+<ul>
+  <li><a href="https://github.com/michaelwang0213">Michael Wang</a></li>
+  <li><a href="https://github.com/keanoz">Keano Zamora</a></li>
+  <li><a href="https://github.com/hramli">Harry Ramli</a></li>
+</ul>
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Section
+Section 1A: 12 - 2pm
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## Project Description
+Our project provides a marketplace for UCLA students to buy and sell meal plan swipes. Sellers can create listings containing details of the swipes that they want to sell. Buyers can view listings and contact sellers. 
