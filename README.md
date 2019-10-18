@@ -3,6 +3,7 @@
   <li><a href="https://github.com/michaelwang0213">Michael Wang</a></li>
   <li><a href="https://github.com/keanoz">Keano Zamora</a></li>
   <li><a href="https://github.com/hramli">Harry Ramli</a></li>
+  <li><a href="https://github.com/rVrengaraju">Ruban Rengaraju</a></li>
 </ul>
 
 ## Section
