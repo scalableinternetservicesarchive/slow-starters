@@ -1,0 +1,16 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listings</h1>
+
+<% @listings.each do |listing| %>
+ <div class="card mb-3" style="max-width: 520px;">
+   <div class="card-header">$<%= listing.price %></div>
+    <div class="card-body">
+      <h5 class="card-title"><%= listing.title %></h5>
+      <p class="card-text"><%= listing.description %></p>
+      <p class="card-text"><small class="text-muted"><%= listing.updated_at %></small></p>
+    </div>
+  </div>
+<% end %>
+
+<%= link_to 'New Listing', new_listing_path %>
