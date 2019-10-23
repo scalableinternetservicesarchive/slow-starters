@@ -13,6 +13,11 @@
   <%= @listing.description %>
 </p>
 
+<p>
+  <strong>Contact me:</strong>
+  <%= @listing.user.email %>
+</p>
+
 <% if user_signed_in? && current_user.id == @listing.user_id %>
   <%= link_to 'Edit', edit_listing_path(@listing) %> |
 <% end %>
