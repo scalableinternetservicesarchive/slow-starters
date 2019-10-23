@@ -2,13 +2,52 @@
 <html>
   <head>
     <title>Mealman</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <%= yield %>
+    <% if flash[:notice] %>
+      <div class="alert alert-info" role="alert">
+        <%= notice %>
+      </div>
+    <% end %>
+    
+    <% if flash[:alert] %>
+      <div class="alert alert-danger" role="alert">
+        <%= alert %>
+      </div>
+    <% end %>
+    
+    <div class="container">
+      <nav class="navbar navbar-light bg-faded px-0">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <%= link_to "Mealman", root_path, class: "navbar-brand"%>
+         <div class="collapse navbar-collapse" id="navbarText">
+          <ul class="navbar-nav">
+            <% if user_signed_in? %> <!-- check if user is signed in -->
+              <li class="nav-item">
+                <%= link_to "New Listing", new_listing_path, class: "nav-link"%>
+              </li>
+              <li class="nav-item">
+                <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "nav-link"%>
+              </li>
+            <% else %>
+              <li class="nav-item">
+                <%= link_to "Login", new_user_session_path, class: "nav-link"%>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      </nav>
+    
+      <%= yield %>
+    </div>
   </body>
 </html>
