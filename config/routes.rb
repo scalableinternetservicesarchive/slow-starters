@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, controllers: { registrations: 'registrations' }
   resources :listings
   resources :users, only: [:show]
   root "listings#index"
