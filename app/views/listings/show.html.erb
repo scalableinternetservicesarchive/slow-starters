@@ -14,8 +14,8 @@
 </p>
 
 <p>
-  <strong>Contact me:</strong>
-  <%= @listing.user.email %>
+  <strong>Posted by</strong>
+  <%= link_to @listing.user.username, user_path(@listing.user.id)%>
 </p>
 
 <% if user_signed_in? && current_user.id == @listing.user_id %>
