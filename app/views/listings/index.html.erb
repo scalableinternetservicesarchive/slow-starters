@@ -22,7 +22,11 @@
     <h5 class="card-title"><%= listing.title %></h5>
    <% end %>
    <p class="card-text"><%= listing.description %></p>
-   <p class="card-text"><small class="text-muted"><%= listing.user.email %></small></p>
+   <p class="card-text">
+    <small class="text-muted">
+     <%= link_to  listing.user.email, user_path(listing.user_id) %>
+     </small>
+    </p>
  </div>
 </div>
 <% end %>
