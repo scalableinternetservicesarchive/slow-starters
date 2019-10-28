@@ -38,6 +38,9 @@ gem 'sprockets-rails', '~> 3.0', '>= 3.0.4' #required by bootstrap
 gem 'simple_form', '~> 5.0', '>= 5.0.1' #forms
 gem 'devise', '~> 4.7', '>= 4.7.1' #authentication
 
+gem 'gravatar_image_tag', '~> 1.2'
+gem 'bootstrap_form'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
