@@ -19,7 +19,7 @@
   <div class="card-body">
     <div class="row">
      <div class="col-8 pr-0">
-      <%= gravatar_image_tag(current_user.email, size: 64, alt: current_user.username) %>
+      <%= gravatar_image_tag(listing.user.email, size: 64, alt: listing.user.username) %>
       <div class="ml-3" style="display: inline-block;" >
        <%= link_to user_path(listing.user_id) do%>
         <h5 class="card-title mb-0"><%= listing.user.username %></h5>
