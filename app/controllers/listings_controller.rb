@@ -11,6 +11,8 @@ class ListingsController < ApplicationController
   # GET /listings/1
   # GET /listings/1.json
   def show
+    @messages = @listing.messages.all
+    @message = @listing.messages.new
   end
 
   # GET /listings/new

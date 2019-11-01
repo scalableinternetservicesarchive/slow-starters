@@ -1,0 +1,40 @@
+<div class="comment-wrapper">
+  <div class="panel panel-info">
+    <div class="panel-body">
+      
+      <%= form_for [@listing, @message] do |f| %>
+        <%= f.text_area :body, class: "form-control textarea", placeholder: "Write a message..." %>
+        <%= f.text_field :user_id, value: current_user.id, type: "hidden"  %>
+      <% end %>
+
+      <input type="submit" class="btn btn-info pull-right" value="Submit" form="new_message">
+      <br><hr>
+      <ul class="media-list">
+
+         <% @messages.each do |message| %>
+          <% if message.body %>
+            <% user = User.find(message.user_id) %>
+            <li class="media">
+              <a href="#" class="pull-left">
+                  <%= gravatar_image_tag(current_user.email, size: 64, alt: current_user.username) %>
+              </a>
+              
+              <div class="media-body">
+                  <span class="text-muted pull-right">
+                      <small class="text-muted"><%= message.message_time %></small>
+                  </span>
+                  <strong class="text-success"><%= user.username %></strong>
+                  <p>
+                    <%= message.body %>
+                  </p>
+              </div>
+            </li>
+          <% end %>
+        <% end %>        
+                
+      </ul>
+    </div>
+  </div>
+</div>
+
+
