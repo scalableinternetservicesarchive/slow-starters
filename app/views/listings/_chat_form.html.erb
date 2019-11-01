@@ -16,7 +16,7 @@
             <% user = User.find(message.user_id) %>
             <li class="media">
               <a href="#" class="pull-left">
-                  <img src="">
+                  <%= gravatar_image_tag(current_user.email, size: 64, alt: current_user.username) %>
               </a>
               
               <div class="media-body">

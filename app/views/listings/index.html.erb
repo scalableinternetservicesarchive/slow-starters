@@ -19,7 +19,7 @@
   <div class="card-body">
     <div class="row">
      <div class="col-8 pr-0">
-      <img src="https://bulma.io/images/placeholders/64x64.png" class="rounded-circle float-left">
+      <%= gravatar_image_tag(current_user.email, size: 64, alt: current_user.username) %>
       <div class="ml-3" style="display: inline-block;" >
        <%= link_to user_path(listing.user_id) do%>
         <h5 class="card-title mb-0"><%= listing.user.username %></h5>
