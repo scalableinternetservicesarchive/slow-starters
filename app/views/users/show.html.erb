@@ -1,16 +1,31 @@
-<h1><%= @user.username %></h1>
-
-<% @user.listings.each do |listing| %>
- <div class="card mb-3" style="max-width: 520px;">
-  <div class="card-header">
-   $<%= listing.price %>
- </div>
-   
- <div class="card-body">
-   <%= link_to listing do%>
-    <h5 class="card-title"><%= listing.title %></h5>
-   <% end %>
-   <p class="card-text"><%= listing.description %></p>
- </div>
+<div class="row my-3">
+  <div class="col-sm-12 col-md-8">
+    <h1>
+      <%= gravatar_image_tag(@user.email, size: 64, alt: @user.username) %> <%= @user.username %>
+    </h1>
+  </div>
+  <div class="col-sm-12 col-md-4">
+    <p>Contact: <%= @user.email %></p>
+  </div>
 </div>
-<% end %>
+<hr>
+<div class="mt-2">
+  <h4>User's listings</h4>
+  <% if @user.listings.count > 0 %>
+    <% @user.listings.each do |listing| %>
+      <div class="card mb-3" style="max-width: 520px;">
+        <div class="card-header">
+        $<%= listing.price %>
+      </div>
+        
+      <div class="card-body">
+        <%= link_to listing do%>
+          <h5 class="card-title"><%= listing.title %></h5>
+        <% end %>
+        <p class="card-text"><%= listing.description %></p>
+      </div>
+    <% end %>
+  <% else %>
+    <p>No listings available</p>
+  <% end %>
+</div>
