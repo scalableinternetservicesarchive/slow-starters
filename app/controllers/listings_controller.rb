@@ -11,7 +11,7 @@ class ListingsController < ApplicationController
   # GET /listings/1
   # GET /listings/1.json
   def show
-    @messages = @listing.messages.all
+    @messages = @listing.messages.all.order("created_at DESC")
     @message = @listing.messages.new
   end
 
