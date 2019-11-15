@@ -14,13 +14,14 @@
         <% user = User.find(reservation.user_id) %>
         <li class="media my-2">
           <a href="#" class="pull-left mr-2">
-            <%= gravatar_image_tag(current_user.email, size: 64, alt: current_user.username) %>
+            <%= gravatar_image_tag(user.email, size: 64, alt: current_user.username) %>
           </a>
           <div class="media-body">
             <strong class="text-success"><%= user.username %></strong>
             <p>
               <%= reservation.num_reservations %>
             </p>
+            <%= link_to "Delete Reservation", listing_reservation_path(reservation.listing, reservation), method: :delete, data: {confirm: "You sure?"} %>
           </div>
         </li>
       <% end %>
