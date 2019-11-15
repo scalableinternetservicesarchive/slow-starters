@@ -13,6 +13,9 @@ class ListingsController < ApplicationController
   def show
     @messages = @listing.messages.all.order("created_at DESC")
     @message = @listing.messages.new
+    
+    @reservations = @listing.reservations.all.order("created_at DESC")
+    @reservation = @listing.reservations.new
   end
 
   # GET /listings/new
