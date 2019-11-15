@@ -14,6 +14,13 @@
 </p>
 
 <p>
+  location: <%= @listing.location %> | 
+  avaialble: <%= @listing.available_swipes %> | 
+  reserved: <%= @listing.swipes_reserved %> | 
+  has_completed: <%= @listing.has_completed ? "true" : "false"%> 
+</p>
+
+<p>
   <strong>Posted by</strong>
   <%= link_to @listing.user.username, user_path(@listing.user.id)%>
 </p>

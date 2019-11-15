@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20191115041744) do
+ActiveRecord::Schema.define(version: 20191115053206) do
 
   create_table "listings", force: :cascade do |t|
     t.string "title"
@@ -20,10 +20,10 @@ ActiveRecord::Schema.define(version: 20191115041744) do
     t.datetime "updated_at", null: false
     t.integer "user_id"
     t.integer "location"
-    t.integer "available_swipes"
-    t.integer "swipes_reserved"
+    t.integer "available_swipes", default: 0
+    t.integer "swipes_reserved", default: 0
     t.datetime "time"
-    t.boolean "has_completed"
+    t.boolean "has_completed", default: false
   end
 
   create_table "messages", force: :cascade do |t|
