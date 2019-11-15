@@ -1,27 +1,42 @@
-<p>
-  <strong>Title:</strong>
-  <%= @listing.title %>
-</p>
-
-<p>
-  <strong>Price:</strong>
-  <%= @listing.price %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @listing.description %>
-</p>
-
-<p>
-  <strong>Posted by</strong>
-  <%= link_to @listing.user.username, user_path(@listing.user.id)%>
-</p>
-
-<% if user_signed_in? && current_user.id == @listing.user_id %>
-  <%= link_to 'Edit', edit_listing_path(@listing) %> |
-<% end %>
-<%= link_to 'Back', listings_path %>
+<div class="row">
+  <div  class="col">
+    <p>
+      <strong>Title:</strong>
+      <%= @listing.title %>
+    </p>
+    
+    <p>
+      <strong>Price:</strong>
+      <%= @listing.price %>
+    </p>
+    
+    <p>
+      <strong>Description:</strong>
+      <%= @listing.description %>
+    </p>
+    
+    <p>
+      location: <%= @listing.location %> | 
+      avaialble: <%= @listing.available_swipes %> | 
+      reserved: <%= @listing.swipes_reserved %> | 
+      has_completed: <%= @listing.has_completed ? "true" : "false"%> 
+    </p>
+    
+    <p>
+      <strong>Posted by</strong>
+      <%= link_to @listing.user.username, user_path(@listing.user.id)%>
+    </p>
+    
+    <% if user_signed_in? && current_user.id == @listing.user_id %>
+      <%= link_to 'Edit', edit_listing_path(@listing) %> |
+    <% end %>
+    <%= link_to 'Back', listings_path %>
+  </div>
+  
+  <div class="col">
+    <%= render "reservation_form" %>
+  </div>
+</div>
 
 <div>
   <%= render "chat_form" %>

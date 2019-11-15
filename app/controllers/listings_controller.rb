@@ -13,6 +13,9 @@ class ListingsController < ApplicationController
   def show
     @messages = @listing.messages.all.order("created_at DESC")
     @message = @listing.messages.new
+    
+    @reservations = @listing.reservations.all.order("created_at DESC")
+    @reservation = @listing.reservations.new
   end
 
   # GET /listings/new
@@ -72,6 +75,6 @@ class ListingsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def listing_params
-      params.require(:listing).permit(:title, :price, :price, :description)
+      params.require(:listing).permit(:title, :price, :description, :time, :available_swipes, :location)
     end
 end

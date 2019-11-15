@@ -1,0 +1,30 @@
+<h4><%= @reservations.count %> reservations</h4>
+
+<%= simple_form_for [@listing, @reservation] do |f| %>
+  <%= f.input :num_reservations, :input_html => { :value => 1 } %>
+  <%= f.text_field :user_id, value: current_user.id, type: "hidden"  %>
+<% end %>
+
+<input type="submit" class="btn btn-info mt-2" value="Submit" form="new_reservation">
+
+<div>
+  <ul class="media-list">
+    <% @reservations.each do |reservation| %>
+      <% if reservation.num_reservations %>
+        <% user = User.find(reservation.user_id) %>
+        <li class="media my-2">
+          <a href="#" class="pull-left mr-2">
+            <%= gravatar_image_tag(user.email, size: 64, alt: current_user.username) %>
+          </a>
+          <div class="media-body">
+            <strong class="text-success"><%= user.username %></strong>
+            <p>
+              <%= reservation.num_reservations %>
+            </p>
+            <%= link_to "Delete Reservation", listing_reservation_path(reservation.listing, reservation), method: :delete, data: {confirm: "You sure?"} %>
+          </div>
+        </li>
+      <% end %>
+    <% end %>        
+  </ul>
+</div>
