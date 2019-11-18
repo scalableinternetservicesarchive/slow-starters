@@ -8,7 +8,7 @@
     <div class="card-body">
       <div class="">
         <%= gravatar_image_tag(listing.user.email, size: 64, alt: listing.user.username) %>
-        <span class="float-right reservations">
+        <span class="float-right card-reservations">
           <%= listing.swipes_reserved %> reservations
         </span>
       </div>
@@ -33,8 +33,8 @@
           <% end %>
         </div>
       <% end %>
-      <span class="float-right">
-        Boelter
+      <span class="card-location float-right">
+        <span class="icon"><i class="fa fa-map-pin" aria-hidden="true"></i></span> <%= Listing.locations.key(listing.location) %>
       </span>
       </div>      
     </div>

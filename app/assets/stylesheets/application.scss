@@ -39,12 +39,17 @@
 
 // Extra large devices (large desktops, 1200px and up)
 @media (min-width: 1200px) {
-    
+
 }
 
-.reservations{
+.card-reservations{
     color: #788699;
     font-size: 12px;
+}
+
+.card-location{
+    color: #788699;
+    font-size: 13px;
 }
 
 .card-title{
