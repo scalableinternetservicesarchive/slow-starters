@@ -67,6 +67,12 @@ class ListingsController < ApplicationController
     end
   end
 
+  def search
+    @q = params[:query]
+    @listings = Listing.where("title LIKE ? or description LIKE ? or location LIKE ? or price LIKE ?", @q, @q, @q, @q)
+    render 'index'
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_listing
