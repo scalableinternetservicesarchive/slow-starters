@@ -14,11 +14,11 @@
           </div>
           <div class="">
             <%= link_to user_path(listing.user_id) do%>
-              <p class="card-title my-2"><%= listing.user.username %></p>
-            <% end %>
+              <p class="card-title my-2"><%= listing.user.username %> | $<%= listing.price %></p>
+            <% end %>     
             <p class="card-price">
-              $<%= listing.price %>
-            </p>
+              <%= listing.title %>
+            </p>       
           </div>
         </div>
 
