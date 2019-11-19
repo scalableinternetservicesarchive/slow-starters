@@ -34,7 +34,10 @@
   </div>
   
   <div class="col">
-    <%= render "reservation_form" %>
+    <% if current_user != @listing.user and @reservations.find{|reservation| reservation.user_id == current_user.id} == nil%>
+      <%= render "reservation_form" %>
+    <% end %>
+    <%= render "reservation_index" %>
   </div>
 </div>
 
