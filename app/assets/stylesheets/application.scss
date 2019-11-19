@@ -13,6 +13,30 @@
  */
 @import "bootstrap";
 
+html, body{
+    width: 100%;
+    height: 100%;
+}
+
+body{
+    height: 100%;
+    background: linear-gradient(0deg,rgba(0, 0, 0, 0.6),rgba(0, 0, 0, 0.6)), url("https://external-preview.redd.it/Nnji-fx-5eInNeC0bPg7U947QOhiDTgNi2QOqz4VMfc.jpg?auto=webp&s=5fdb4089d045d4eb6b1a803f6c45bccf6bf96f11") center no-repeat;
+    background-size: cover;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.card{
+    color: black;
+}
+
+.home-nav{
+    background: none;
+}
+
+.navbar-brand{
+    color: #F7F7F7 !important;
+}
+
 // Small devices (landscape phones, 576px and up)
 @media (min-width: 576px) and (max-width: 767px) {
     .card{
