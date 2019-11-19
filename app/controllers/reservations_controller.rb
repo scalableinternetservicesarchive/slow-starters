@@ -29,9 +29,11 @@ class ReservationsController < ApplicationController
   
   def destroy
     @reservation = Reservation.find(params[:id])
-    @listing.update(swipes_reserved: @listing.swipes_reserved - @reservation.num_reservations)
-    @reservation.destroy
-    redirect_to listing_path(@listing)
+    if current_user.id == @reservation.user_id
+      @listing.update(swipes_reserved: @listing.swipes_reserved - @reservation.num_reservations)
+      @reservation.destroy
+      redirect_to listing_path(@listing)
+    end
   end
   
   private

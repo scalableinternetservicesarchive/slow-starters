@@ -12,7 +12,9 @@
             <p>
               <%= reservation.num_reservations %>
             </p>
-            <%= link_to "Delete Reservation", listing_reservation_path(reservation.listing, reservation), method: :delete, data: {confirm: "You sure?"} %>
+            <% if current_user.id == reservation.user_id %>
+              <%= link_to "Delete Reservation", listing_reservation_path(reservation.listing, reservation), method: :delete, data: {confirm: "You sure?"} %>
+            <% end %>
           </div>
         </li>
       <% end %>
