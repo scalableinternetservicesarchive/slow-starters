@@ -2,7 +2,11 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { registrations: 'registrations' }
   resources :listings do
     resources :messages
-    resources :reservations
+    resources :reservations do
+      member do
+        put 'confirm'
+      end
+    end
   end
   resources :users, only: [:show]
   root "listings#index"

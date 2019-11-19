@@ -8,13 +8,18 @@
             <%= gravatar_image_tag(user.email, size: 64, alt: current_user.username) %>
           </a>
           <div class="media-body">
-            <strong class="text-success"><%= user.username %></strong>
-            <p>
-              <%= reservation.num_reservations %>
-            </p>
+            <strong class="text-success"><%= user.username %></strong> <br>
+            
+            <span>Reserved: <%= reservation.num_reservations %> | Seller Confimed: <%= reservation.seller_confirmed %> | Buyer Confimed: <%= reservation.buyer_confirmed %></span><br>
+            
             <% if current_user.id == reservation.user_id %>
-              <%= link_to "Delete Reservation", listing_reservation_path(reservation.listing, reservation), method: :delete, data: {confirm: "You sure?"} %>
+              <%= button_to "Delete Reservation", listing_reservation_path(reservation.listing, reservation), method: :delete, data: {confirm: "You sure?"} %>
             <% end %>
+            
+            <% if current_user.id == reservation.user_id or current_user.id == @listing.user_id %>
+              <%= button_to "Confirm Payment", confirm_listing_reservation_path(reservation.listing, reservation), method: :put %>
+            <% end %>
+         
           </div>
         </li>
       <% end %>
