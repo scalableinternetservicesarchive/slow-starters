@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20191115054545) do
+ActiveRecord::Schema.define(version: 20191119180814) do
 
   create_table "listings", force: :cascade do |t|
     t.string "title"
@@ -34,6 +34,16 @@ ActiveRecord::Schema.define(version: 20191115054545) do
     t.datetime "updated_at", null: false
     t.index ["listing_id"], name: "index_messages_on_listing_id"
     t.index ["user_id"], name: "index_messages_on_user_id"
+  end
+
+  create_table "ratings", force: :cascade do |t|
+    t.boolean "from_sender"
+    t.integer "score"
+    t.text "comment", default: "f"
+    t.integer "reservation_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["reservation_id"], name: "index_ratings_on_reservation_id"
   end
 
   create_table "reservations", force: :cascade do |t|
