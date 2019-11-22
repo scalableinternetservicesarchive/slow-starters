@@ -63,7 +63,10 @@ body{
 
 // Extra large devices (large desktops, 1200px and up)
 @media (min-width: 1200px) {
-
+    .card{
+        min-width: 348px;
+        max-width: 348px;
+    }
 }
 
 hr{
