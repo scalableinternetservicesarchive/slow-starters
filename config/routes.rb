@@ -6,6 +6,7 @@ Rails.application.routes.draw do
       member do
         put 'confirm'
       end
+      resources :ratings
     end
   end
   resources :users, only: [:show]

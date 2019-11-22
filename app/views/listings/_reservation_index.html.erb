@@ -12,17 +12,53 @@
             
             <span>Reserved: <%= reservation.num_reservations %> | Seller Confimed: <%= reservation.seller_confirmed %> | Buyer Confimed: <%= reservation.buyer_confirmed %></span><br>
             
-            <% if current_user.id == reservation.user_id %>
-              <%= button_to "Delete Reservation", listing_reservation_path(reservation.listing, reservation), method: :delete, data: {confirm: "You sure?"} %>
+            <% @ratings = reservation.ratings.all %>
+            <% @rating = reservation.ratings.new %>
+            
+            <% if current_user.id == reservation.user_id%>
+              <% if reservation.seller_confirmed && reservation.buyer_confirmed%>
+                <div class="stars">
+                  <%= simple_form_for [@listing, reservation, @rating] do |f| %>
+                    <%= f.input :score,  :input_html => { :value => '5' } %>
+                    <%= f.text_field :comment, value: "hello", type: "hidden" %>
+                    <%= f.text_field :from_seller, value: (current_user.id==user.id)? false : true %>
+                  <% end %>
+                </div>
+
+                <input type="submit" class="btn btn-info mt-2" value="Submit" form="new_rating">
+              <% elsif %>
+                <%= button_to reservation.buyer_confirmed ? "Unconfirm Payment" : "Confirm Payment", 
+                  confirm_listing_reservation_path(reservation.listing, reservation), 
+                  method: :put 
+                %>
+                <%= button_to "Delete Reservation", listing_reservation_path(reservation.listing, reservation), method: :delete, data: {confirm: "You sure?"} %>
+              <% end %>
             <% end %>
             
-            <% if current_user.id == reservation.user_id or current_user.id == @listing.user_id %>
-              <%= button_to "Confirm Payment", confirm_listing_reservation_path(reservation.listing, reservation), method: :put %>
+            <% if current_user.id == @listing.user_id  %>
+              <%= button_to reservation.seller_confirmed ? "Unconfirm Payment" : "Confirm Payment", 
+                confirm_listing_reservation_path(reservation.listing, reservation), 
+                method: :put 
+              %>
             <% end %>
-         
+          
+            <h4><%= @ratings.count %> ratings</h4>
+            <% @ratings.each do |rating| %>
+              <div class="star-rating" data-score=<%= rating.score %>></div>
+              <span><%= rating.from_seller %></span>
+            <% end %>
           </div>
+          
         </li>
       <% end %>
     <% end %>        
   </ul>
+  
 </div>
+
+<script>
+  $('.star-rating').raty({
+    path: '/assets',
+    readOnly: true,
+  });
+</script>

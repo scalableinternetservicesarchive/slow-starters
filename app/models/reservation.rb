@@ -2,6 +2,8 @@ class Reservation < ApplicationRecord
   belongs_to :listing
   belongs_to :user
   
+  has_many :ratings
+  
   validates_uniqueness_of :user_id, scope: :listing_id
   validates_presence_of :num_reservations,:listing_id, :user_id
   validates_numericality_of :num_reservations, :greater_than => 0
