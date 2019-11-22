@@ -33,14 +33,16 @@
     <%= link_to 'Back', listings_path %>
   </div>
   
-  <div class="col-lg-5">
-    <% if current_user != @listing.user and @reservations.find{|reservation| reservation.user_id == current_user.id} == nil%>
-      <%= render "reservation_form" %>
-    <% end %>
-    <%= render "reservation_index" %>
-  </div>
-</div>
+  <% if user_signed_in? %>
+    <div class="col-lg-5">
+      <% if current_user != @listing.user and @reservations.find{|reservation| reservation.user_id == current_user.id} == nil%>
+        <%= render "reservation_form" %>
+      <% end %>
+      <%= render "reservation_index" %>
+    </div>
 
-<div>
-  <%= render "chat_form" %>
+    <div>
+      <%= render "chat_form" %>
+    </div>
+  <% end %>
 </div>

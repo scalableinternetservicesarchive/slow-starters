@@ -8,7 +8,16 @@
     <%= f.input :price, :input_html => { :value => '10.00' }%>
     <%= f.input :time %>
     <%= f.input :available_swipes, :input_html => { :value => 1 } %>
-    <%= f.select :location, Listing.locations.keys %>
+    <select name="listing[location]">
+      <option value="0">BPlate</option>
+      <option value="1">Covel</option>
+      <option value="2">DeNeve</option>
+      <option value="3">Feast</option>
+      <option value="4">BCafe</option>
+      <option value="5">Rendezvous</option>
+      <option value="6">LateNight</option>
+      <option value="7">TheStudy</option>
+    </select>
     <%= f.input :description %>
   </div>
 

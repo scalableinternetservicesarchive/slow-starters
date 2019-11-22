@@ -33,7 +33,7 @@
             
             <% if current_user.id == reservation.user_id%>
               <% if reservation.seller_confirmed && reservation.buyer_confirmed%>
-                <% if @ratings.find_all{ |rating| rating.from_seller == true}.empty? == true %>
+                <% if @ratings.find_all{ |rating| rating.from_seller == false}.empty? == true %>
                   <%= form_for [@listing, reservation, @rating] do |f| %>
                     <span class="rating-form">
                       <label>Rate your experience: </label>
