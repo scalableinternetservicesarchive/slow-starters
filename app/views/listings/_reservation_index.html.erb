@@ -3,50 +3,93 @@
     <% @reservations.each do |reservation| %>
       <% if reservation.num_reservations %>
         <% user = User.find(reservation.user_id) %>
+        <% seller = User.find(@listing.user_id) %>
         <li class="media my-2">
           <a href="#" class="pull-left mr-2">
-            <%= gravatar_image_tag(user.email, size: 64, alt: current_user.username) %>
+            <img class="reservation-gravatar-img" src="<%= gravatar_image_url(user.email) %>">
           </a>
           <div class="media-body">
             <strong class="text-success"><%= user.username %></strong> <br>
             
-            <span>Reserved: <%= reservation.num_reservations %> | Seller Confimed: <%= reservation.seller_confirmed %> | Buyer Confimed: <%= reservation.buyer_confirmed %></span><br>
+            <span>Reserved: <%= reservation.num_reservations %> | </span>
+            <span>Seller
+              <% if reservation.seller_confirmed %>
+                <i class="fa fa-check" style=""></i>
+              <% else %>
+                <i class="fa fa-times" style=""></i>
+              <% end %>|
+            </span> 
+            <span>Buyer
+              <% if reservation.buyer_confirmed %>
+                <i class="fa fa-check" style=""></i>
+              <% else %>
+                <i class="fa fa-times" style=""></i>
+              <% end %>
+            </span> 
+            <br>
             
             <% @ratings = reservation.ratings.all %>
             <% @rating = reservation.ratings.new %>
             
             <% if current_user.id == reservation.user_id%>
               <% if reservation.seller_confirmed && reservation.buyer_confirmed%>
-                <div class="stars">
-                  <%= simple_form_for [@listing, reservation, @rating] do |f| %>
-                    <%= f.input :score,  :input_html => { :value => '5' } %>
-                    <%= f.text_field :comment, value: "hello", type: "hidden" %>
-                    <%= f.text_field :from_seller, value: (current_user.id==user.id)? false : true %>
+                <% if @ratings.find_all{ |rating| rating.from_seller == true}.empty? == true %>
+                  <%= form_for [@listing, reservation, @rating] do |f| %>
+                    <span class="rating-form">
+                      <label>Rate your experience: </label>
+                    </span>
+                    <%= f.hidden_field :comment, value: "hello" %>
+                    <%= f.hidden_field :from_seller, value: (current_user.id==user.id)? false : true, type: "hidden" %>
+                    <input type="submit" class="btn btn-info mt-2" value="Submit" form="new_rating">
                   <% end %>
-                </div>
-
-                <input type="submit" class="btn btn-info mt-2" value="Submit" form="new_rating">
+                <% end %>
               <% elsif %>
                 <%= button_to reservation.buyer_confirmed ? "Unconfirm Payment" : "Confirm Payment", 
                   confirm_listing_reservation_path(reservation.listing, reservation), 
                   method: :put 
                 %>
-                <%= button_to "Delete Reservation", listing_reservation_path(reservation.listing, reservation), method: :delete, data: {confirm: "You sure?"} %>
               <% end %>
             <% end %>
             
             <% if current_user.id == @listing.user_id  %>
-              <%= button_to reservation.seller_confirmed ? "Unconfirm Payment" : "Confirm Payment", 
-                confirm_listing_reservation_path(reservation.listing, reservation), 
-                method: :put 
-              %>
+              <% if reservation.seller_confirmed && reservation.buyer_confirmed%>
+                <% if @ratings.find_all{ |rating| rating.from_seller == true}.empty? == true %>
+                  <%= form_for [@listing, reservation, @rating] do |f| %>
+                    <span class="rating-form">
+                      <label>Rate this buyer: </label>
+                    </span>
+                    <%= f.hidden_field :comment, value: "hello" %>
+                    <%= f.hidden_field :from_seller, value: (current_user.id==user.id)? false : true, type: "hidden" %>
+                    <input type="submit" class="btn btn-info mt-2" value="Submit" form="new_rating">
+                  <% end %>
+                <% end %>
+              <% elsif %>
+                <%= button_to reservation.seller_confirmed ? "Unconfirm Payment" : "Confirm Payment", 
+                  confirm_listing_reservation_path(reservation.listing, reservation), 
+                  method: :put 
+                %>
+              <% end %>
             <% end %>
           
-            <h4><%= @ratings.count %> ratings</h4>
+            <!--<h4><%= reservation.ratings.count %></h4>-->
             <% @ratings.each do |rating| %>
-              <div class="star-rating" data-score=<%= rating.score %>></div>
-              <span><%= rating.from_seller %></span>
-            <% end %>
+              <div class="listing-ratings">
+                <% if rating.from_seller %>
+                  <span>
+                    <img class="gravatar-img" src="<%= gravatar_image_url(seller.email) %>">
+                    <i class="fa fa-arrow-right" style=""></i> 
+                    <img class="gravatar-img" src="<%= gravatar_image_url(user.email) %>">
+                  </span>
+                <% else %>
+                   <span>
+                    <img class="gravatar-img" src="<%= gravatar_image_url(user.email) %>">
+                    <i class="fa fa-arrow-right" style=""></i> 
+                    <img class="gravatar-img" src="<%= gravatar_image_url(seller.email) %>">
+                  </span>
+                <% end %>
+                <span class="star-rating" data-score=<%= rating.score %>></span>
+              <% end %>
+            </div>
           </div>
           
         </li>
@@ -57,6 +100,11 @@
 </div>
 
 <script>
+  $('.rating-form').raty({
+    path: '/assets',
+    scoreName: 'rating[score]'
+  });
+  
   $('.star-rating').raty({
     path: '/assets',
     readOnly: true,
