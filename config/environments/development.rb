@@ -16,7 +16,9 @@ Rails.application.configure do
   if Rails.root.join('tmp/caching-dev.txt').exist?
     config.action_controller.perform_caching = true
 
+    #change :memory_store to :mem_cache_store for caching
     config.cache_store = :memory_store
+
     config.public_file_server.headers = {
       'Cache-Control' => "public, max-age=#{2.days.seconds.to_i}"
     }

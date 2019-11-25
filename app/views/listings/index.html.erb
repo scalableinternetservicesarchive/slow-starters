@@ -1,49 +1,25 @@
-<form class="mb-4" action="/search">
-  <input class="form-control" type="text" name="query" placeholder="Search" aria-label="Search">
-</form>
-<div class="card-deck">
-  <% @listings.each do |listing| %>
-    <%= link_to listing do %>
-      <div class="card mb-3" style="">
-        <div class="card-body">
-          <div class="">
-            <%= gravatar_image_tag(listing.user.email, size: 64, alt: listing.user.username) %>
-            <span class="float-right card-reservations">
-              <%= listing.swipes_reserved %> reservations
-            </span>
-          </div>
-          <div class="">
-            <%= link_to user_path(listing.user_id) do%>
-              <p class="card-title my-2"><%= listing.user.username %> | $<%= listing.price %></p>
-            <% end %>     
-            <p class="card-price">
-              <%= listing.title %>
-            </p>       
-          </div>
-        </div>
-
-        <div class="card-footer">
-          <% if user_signed_in? && current_user.id == listing.user_id %>
-            <div style="display: inline-block;">
-              <%= link_to edit_listing_path(listing), class:"mr-1" do%>
-              <span class="icon"><i class="fa fa-pencil" aria-hidden="true"></i></span>
-              <% end %>
-              <%= link_to listing, method: :delete, data: {confirm: "Are you sure you want to delete this listing?"} do%>
-              <span class="icon"><i class="fa fa-trash-o" aria-hidden="true"></i></span>
-              <% end %>
-            </div>
-          <% end %>
-          <span class="card-location float-right">
-            <span class="icon"><i class="fa fa-map-pin" aria-hidden="true"></i></span> <%= Listing.locations.key(listing.location) %>
-          </span>
-        </div>      
-      </div>
+<!-- remove cache and corresponding end tag to disable russian doll caching-->
+<% cache(cache_key_for_listing) do %>
+  <form class="mb-4" action="/search">
+    <input class="form-control" type="text" name="query" placeholder="Search" aria-label="Search">
+  </form>
+  <div class="card-deck">
+    <% @listings.each do |listing| %>
+      <%= link_to listing do %>
+      <!-- remove cache and corresponding end tag to disable fragment caching-->
+        <% cache(cache_key_for_listing_card(listing)) do %>
+          <%= render "listing_card", listing: listing %>
+        <% end %>
+      <% end %>
     <% end %>
   <% end %>
 </div>
+  </div>
+<% end %>
 
 <%= will_paginate @listings, 
     renderer: WillPaginate::ActionView::BootstrapLinkRenderer,
     previous_label: "Previous", next_label: "Next", 
     inner_window: 1, outer_window: 1 
 %>
+
