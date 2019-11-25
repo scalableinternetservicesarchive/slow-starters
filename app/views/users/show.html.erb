@@ -15,17 +15,37 @@
   </div>
 </div>
 <hr>
-<div class="mt-2">
-  <h4 class="mb-4" style="color: white;">User's listings</h4>
-  <% if @user.listings.count > 0 %>
-    <div class="card-deck">
-      <% @user.listings.each do |listing| %>
-        <%= render "profile_card", listing: listing %>
+
+<div class="row">
+  <div class="col-lg-6">
+    <div class="mt-2">
+      <h4 class="mb-4" style="color: white;">User's listings</h4>
+      <% if @user.listings.count > 0 %>
+        <div class="card-deck">
+          <% @user.listings.each do |listing| %>
+            <%= render "profile_card", listing: listing %>
+          <% end %>
+        </div>
+      <% else %>
+        <p>No listings available</p>
       <% end %>
     </div>
-  <% else %>
-    <p>No listings available</p>
-  <% end %>
+  </div>
+</div>
+
+<div class="col-lg-6">
+ <div class="mt-2">
+    <h4 class="mb-4" style="color: white;">Reserved listings</h4>
+    <% if @buyer_listings.count > 0 %>
+      <div class="card-deck">
+        <% @buyer_listings.each do |listing| %>
+          <%= render "profile_card", listing: listing %>
+        <% end %>
+      </div>
+    <% else %>
+      <p>No listings available</p>
+    <% end %>
+  </div> 
 </div>
 
 <script>

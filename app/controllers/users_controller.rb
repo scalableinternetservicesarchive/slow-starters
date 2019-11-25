@@ -3,9 +3,18 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @seller_score = getSellerRating
     @buyer_score = getBuyerRating
+    @buyer_listings = getBuyerListings
   end
   
   private
+  
+    def getBuyerListings
+      @user = User.find(params[:id])
+      reservations = @user.reservations
+      listings = []
+      reservations.each { |reservation| listings.push reservation.listing }
+      return listings
+    end
     
     def getSellerRating
       @user = User.find(params[:id])
