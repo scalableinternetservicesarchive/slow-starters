@@ -40,9 +40,11 @@
       <% end %>
       <%= render "reservation_index" %>
     </div>
+  <% end %>
+</div>
 
+<% if user_signed_in? %>
     <div>
       <%= render "chat_form" %>
     </div>
-  <% end %>
-</div>
+<% end %>

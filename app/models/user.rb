@@ -5,5 +5,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   validates :username, presence: true, length: { maximum: 20 }
   validates_uniqueness_of :username #handles duplicate username
-  has_many :listings         
+  has_many :listings      
+  has_many :reservations
 end
