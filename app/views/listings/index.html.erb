@@ -41,3 +41,9 @@
     <% end %>
   <% end %>
 </div>
+
+<%= will_paginate @listings, 
+    renderer: WillPaginate::ActionView::BootstrapLinkRenderer,
+    previous_label: "Previous", next_label: "Next", 
+    inner_window: 1, outer_window: 1 
+%>
