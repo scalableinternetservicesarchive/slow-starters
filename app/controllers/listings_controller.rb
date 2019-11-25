@@ -6,7 +6,8 @@ class ListingsController < ApplicationController
   # GET /listings.json
   def index
     @listings = Listing.all.order("created_at DESC")
-    # fresh_when(@listings)
+    # uncomment below to enable client-side caching
+    # fresh_when(@listings) 
   end
 
   # GET /listings/1

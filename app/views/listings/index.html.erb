@@ -4,6 +4,7 @@
 <div class="card-deck">
   <% @listings.each do |listing| %>
     <%= link_to listing do %>
+    <!-- remove cache and corresponding end tag to disable fragment caching-->
       <% cache(cache_key_for_listing_card(listing)) do %>
         <%= render "listing_card", listing: listing %>
       <% end %>
