@@ -5,7 +5,7 @@ class ListingsController < ApplicationController
   # GET /listings
   # GET /listings.json
   def index
-    @listings = Listing.all.order("time DESC").paginate(page: params[:page], per_page: 72)
+    @listings = Listing.all.order("time DESC")
     # uncomment below to enable client-side caching
     # fresh_when(@listings) 
   end
