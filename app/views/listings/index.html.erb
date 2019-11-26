@@ -1,5 +1,5 @@
 <!-- remove cache and corresponding end tag to disable russian doll caching-->
-<% cache(cache_key_for_listing) do %>
+
   <form class="mb-4" action="/search">
     <input class="form-control" type="text" name="query" placeholder="Search" aria-label="Search">
   </form>
@@ -7,13 +7,12 @@
     <% @listings.each do |listing| %>
       <%= link_to listing do %>
       <!-- remove cache and corresponding end tag to disable fragment caching-->
-        <% cache(cache_key_for_listing_card(listing)) do %>
+        
           <%= render "listing_card", listing: listing %>
-        <% end %>
+        
       <% end %>
     <% end %>
   </div>
-<% end %>
 
 <%= will_paginate @listings, 
     renderer: WillPaginate::ActionView::BootstrapLinkRenderer,
