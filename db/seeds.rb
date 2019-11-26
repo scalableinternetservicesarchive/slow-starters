@@ -11,19 +11,27 @@ listings = []
 
 100.times do |n|
     u = User.create!(
-        username: Faker::Name.first_name, 
+        username: "test" + n.to_s,
         email: Faker::Internet.unique.email, 
         password: '123456', 
         password_confirmation: '123456')
     users.push(u.id)
     
+    
+    
     50.times do |n|
+        minute = rand(0...60)
+        minute = format('%02d', minute)
+        second = rand(0...60)
+        second = format('%02d', second)
+        
         l = Listing.create!(
             user_id: u.id,
             title: 'hi', 
             price: 3, 
             available_swipes: 100,
             location: 1,
+            time: "2019-11-30T08:" + minute + ":" + second,
             description: 'test')
         listings.push(l.id)
     end	
