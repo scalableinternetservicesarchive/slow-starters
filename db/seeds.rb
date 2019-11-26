@@ -11,7 +11,7 @@ listings = []
 
 100.times do |n|
     u = User.create!(
-        username: Faker::Name.first_name, 
+        username: "test" + n.to_s,
         email: Faker::Internet.unique.email, 
         password: '123456', 
         password_confirmation: '123456')
