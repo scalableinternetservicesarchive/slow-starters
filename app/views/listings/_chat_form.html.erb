@@ -9,7 +9,7 @@
         <%= f.text_field :user_id, value: current_user.id, type: "hidden"  %>
       <% end %>
 
-      <input type="submit" class="btn btn-info mt-2" value="Submit" form="new_message">
+      <input type="submit" class="btn btn-primary mt-2" value="Submit" form="new_message">
       <ul class="media-list">
         <% @messages.each do |message| %>
           <% if message.body %>

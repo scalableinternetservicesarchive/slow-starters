@@ -20,14 +20,10 @@ html, body{
 
 body{
     height: 100%;
-    background: linear-gradient(0deg,rgba(0, 0, 0, 0.6),rgba(0, 0, 0, 0.6)), url("https://external-preview.redd.it/Nnji-fx-5eInNeC0bPg7U947QOhiDTgNi2QOqz4VMfc.jpg?auto=webp&s=5fdb4089d045d4eb6b1a803f6c45bccf6bf96f11") center no-repeat;
+    background: linear-gradient(0deg,rgba(0, 0, 0, 0.3),rgba(0, 0, 0, 0.3)), url('/assets/UCLA.png') center no-repeat;
     background-size: cover;
     background-attachment: fixed;
-    color: rgba(255, 255, 255, 0.5);
-}
-
-.card{
-    color: black;
+    color: rgba(255, 255, 255, 0.7);
 }
 
 .home-nav{
@@ -38,9 +34,18 @@ body{
     color: #F7F7F7 !important;
 }
 
+
+hr{
+    border-top: 1px solid rgba(255,255,255, 0.5);
+}
+
+
+
+.card { background-color: rgba(16, 16, 16, 0.8); }
+
 // Small devices (landscape phones, 576px and up)
 @media (min-width: 576px) and (max-width: 767px) {
-    .card{
+    .listing-card{
         min-width: 238px;
         max-width: 238px;
     }
@@ -48,7 +53,7 @@ body{
 
 // Medium devices (tablets, 768px and up)
 @media (min-width: 768px) and (max-width: 991px) {
-    .card{
+    .listing-card{
         min-width: 330px;
         max-width: 330px;
     }
@@ -56,7 +61,7 @@ body{
 
 // Large devices (desktops, 992px and up)
 @media (min-width: 992px) and (max-width: 1199px) {
-    .card{
+    .listing-card{
         min-width: 288px;
         max-width: 288px;
     }
@@ -64,19 +69,83 @@ body{
 
 // Extra large devices (large desktops, 1200px and up)
 @media (min-width: 1200px) {
-    .card{
+    .listing-card{
         min-width: 348px;
         max-width: 348px;
     }
 }
 
-hr{
-    border-top: 1px solid rgba(255,255,255, 0.5);
+.listing-card {
+    border-color: rgba(255,255,0,0.3) !important;
 }
 
-.card:hover{
+.listing-card:hover{
     box-shadow: 0 2px 10px #FFE800;
 }
+
+.card-img-top {
+    height: 72px;
+}
+
+.card-img-overlay {
+    padding: 0px;
+}
+
+.card-overlay-text {
+    width: 100%;
+    height: 72px;
+    background-image: linear-gradient(to top, rgba(0,0,0,0.6), rgba(0,0,0,0.5) 50%, rgba(0,0,0,0) 60%);
+    color: white;
+    padding: 0px 1.25rem;
+    position:relative;
+    overflow:auto;
+    vertical-align: text-bottom;
+}
+
+.listing-card-location {
+    font-size: 18px;
+    text-align:left; bottom:8px; position:absolute; left: 1.25rem
+}
+
+.listing-card-price {
+    font-size: 32px;
+    float:right; text-align:right; bottom: 4px; position:absolute; right: 1.25rem
+}
+
+.listing-card-body {
+    color: lightgray;
+    padding-top: 8px;
+    padding-bottom: 0px;
+}
+
+.listing-card-body-title {
+    margin-bottom: 8px;
+}
+
+.listing-card-description {
+    height: 100px;
+    font-size: 14px;
+    overflow: hidden;
+}
+
+
+
+
+
+.reservation-card {
+    background-color: rgba(32, 32, 32, 0.8);
+}
+
+.reservation-card:hover{
+    box-shadow: 0px;
+}
+
+.reservation-card-body {
+    
+}
+
+
+
 
 .user-info{
     color: white;
@@ -90,11 +159,6 @@ hr{
 .card-reservations{
     color: #788699;
     font-size: 12px;
-}
-
-.card-location{
-    color: #788699;
-    font-size: 13px;
 }
 
 .card-title{
@@ -134,14 +198,38 @@ hr{
 
 
 
-
+.reservation-card {
+    border-radius: 0px;
+}
 .reservation-gravatar-img {
     width: 48px;
     height: 48px;
+    border-radius: 50%;
+    margin-right: 10px;
 }
+
+.reservation-gravatar-toggle {
+    padding: 0px;
+}
+
+
+
+
+
+
+
+
+
 
 .listing-ratings .gravatar-img {
     width: 24px;
     height: 24px;
     border-radius: 50%;
+}
+
+.listing-card-gravatar-img {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    margin-right: 8px;
 }

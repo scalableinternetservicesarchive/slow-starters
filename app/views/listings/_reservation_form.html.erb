@@ -1,8 +1,17 @@
-<h4><%= @reservations.count %> reservations</h4>
-
 <%= simple_form_for [@listing, @reservation] do |f| %>
-  <%= f.input :num_reservations, :input_html => { :value => 1 } %>
-  <%= f.text_field :user_id, value: current_user.id, type: "hidden"  %>
+  <label for="reservation_num_reservations">Reserve Number of Swipes</label>
+  <div class="input-group mb-3">
+    <%= f.hidden_field :user_id, value: current_user.id %>
+    <input type="number" class="form-control" id="reservation_num_reservations" name="reservation[num_reservations]" value="1" aria-label="Recipient's username" aria-describedby="basic-addon2">
+    
+    <div class="input-group-append">
+      <spanid="basic-addon2">
+        <% if current_user != @listing.user and @reservations.find{|reservation| reservation.user_id == current_user.id} == nil%>
+          <input type="submit" class="btn btn-primary" value="Reserve">
+        <% else %>
+          <input type="submit" class="btn btn-light" value="Reserve" disabled>
+        <% end %>
+      </span>
+    </div>
+  </div>
 <% end %>
-
-<input type="submit" class="btn btn-info mt-2" value="Submit" form="new_reservation">

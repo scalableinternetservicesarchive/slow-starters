@@ -71,7 +71,7 @@ class ListingsController < ApplicationController
 
   def search
     @q = params[:query]
-    @listings = Listing.where("title LIKE ? or description LIKE ? or location LIKE ? or price LIKE ?", @q, @q, @q, @q)
+    @listings = Listing.where("title LIKE ? or description LIKE ? or location LIKE ? or price LIKE ?", @q, @q, @q, @q).order("time DESC").paginate(page: params[:page], per_page: 12)
     render 'index'
   end
 
