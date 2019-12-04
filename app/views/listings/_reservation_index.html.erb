@@ -93,8 +93,7 @@
                 %>
               <% end %>
             <% end %>
-          
-            <!--<h4><%= reservation.ratings.count %></h4>-->
+
             <% @ratings.each do |rating| %>
               <div class="listing-ratings">
                 <% if rating.from_seller %>
@@ -111,13 +110,11 @@
                   </span>
                 <% end %>
                  <span>&nbsp;</span><span class="star-rating" data-score=<%= rating.score %>></span>
+                </div>
               <% end %>
-            </div>
           </div>
         </div>
-      
-
-    
+      </div>
     <% end %>
   <% end %>
   
