@@ -1,4 +1,11 @@
 <div class="accordion" id="accordionExample">
+  <div class="card z-depth-0 bordered">
+    <div class="card-header" id="headingMain">
+      
+      <h4><%= pluralize(@reservations.count, 'Reservation') %></h4>
+      <span><%= @listing.swipes_reserved %>/<%= @listing.available_swipes %> Reserved</span>
+    </div>
+  </div>
   
   <% @reservations.each do |reservation| %>
     <% if reservation.num_reservations %>
@@ -35,9 +42,9 @@
 
         </div>
         
-        <div id="collapse<%= reservation.user_id %>" class="collapse" aria-labelledby="heading<%= reservation.user_id %>"
+        <div id="collapse<%= reservation.user_id %>" class="collapse <%= current_user.id == user.id ? "show" : "" %>" aria-labelledby="heading<%= reservation.user_id %>"
           data-parent="#accordionExample">
-          <div class="card-body">
+          <div class="card-body reservation-card-body">
             <% @ratings = reservation.ratings.all %>
             <% @rating = reservation.ratings.new %>
             
@@ -53,10 +60,13 @@
                     <input type="submit" class="btn btn-info mt-2" value="Submit" form="new_rating">
                   <% end %>
                 <% end %>
-              <% elsif %>
-                <%= button_to reservation.buyer_confirmed ? "Unconfirm Payment" : "Confirm Payment", 
-                  confirm_listing_reservation_path(reservation.listing, reservation), 
-                  method: :put 
+              <% else %>
+                <%= button_to(
+                      reservation.buyer_confirmed ? "Unconfirm Payment" : "Confirm Payment", 
+                      confirm_listing_reservation_path(reservation.listing, reservation),
+                      method: :put, 
+                      :class => "btn " + (reservation.buyer_confirmed ? "btn-light" : "btn-success")
+                    )
                 %>
               <% end %>
             <% end %>
@@ -73,10 +83,13 @@
                     <input type="submit" class="btn btn-info mt-2" value="Submit" form="new_rating">
                   <% end %>
                 <% end %>
-              <% elsif %>
-                <%= button_to reservation.seller_confirmed ? "Unconfirm Payment" : "Confirm Payment", 
-                  confirm_listing_reservation_path(reservation.listing, reservation), 
-                  method: :put 
+              <% else %>
+                <%= button_to(
+                      reservation.seller_confirmed ? "Unconfirm Payment" : "Confirm Payment", 
+                      confirm_listing_reservation_path(reservation.listing, reservation),
+                      method: :put, 
+                      :class => "btn " + (reservation.seller_confirmed ? "btn-light" : "btn-success")
+                    )
                 %>
               <% end %>
             <% end %>
@@ -102,7 +115,8 @@
             </div>
           </div>
         </div>
-      </div>
+      
+
     
     <% end %>
   <% end %>

@@ -133,11 +133,15 @@ hr{
 
 
 .reservation-card {
-    
+    background-color: rgba(32, 32, 32, 0.8);
 }
 
 .reservation-card:hover{
     box-shadow: 0px;
+}
+
+.reservation-card-body {
+    
 }
 
 
