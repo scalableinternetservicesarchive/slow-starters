@@ -17,14 +17,14 @@ class Listing < ApplicationRecord
    }
    
    enum images:{
-     0 => "bruin_plate.jpg",
-     1 => "covel.jpg",
-     2 => "de_neve.jpg",
-     3 => "feast.jpg",
-     4 => "bruin_cafe.jpg",
-     5 => "rendezvous.jpg",
-     6 => "de_neve.jpg",
-     7 => "the_study.jpg",
-     8 => "cafe_1919.jpg"
+     0 => "https://i.imgur.com/h54RWvm.jpg",
+     1 => "https://i.imgur.com/uQFxGRI.jpg",
+     2 => "https://i.imgur.com/0wxAM5k.jpg",
+     3 => "https://i.imgur.com/bWwYe93.jpg",
+     4 => "https://i.imgur.com/iH56lGH.jpg",
+     5 => "https://i.imgur.com/6XF7qW1.jpg",
+     6 => "https://i.imgur.com/0wxAM5k.jpg",
+     7 => "https://i.imgur.com/3ZfygfP.jpg",
+     8 => "https://i.imgur.com/esu8IE0.jpg"
    }
 end
