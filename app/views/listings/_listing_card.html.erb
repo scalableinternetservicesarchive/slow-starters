@@ -1,34 +1,42 @@
-<div class="card mb-3" style="">
-    <div class="card-body">
-        <div class="">
-        <%= gravatar_image_tag(listing.user.email, size: 64, alt: listing.user.username) %>
-        <span class="float-right card-reservations">
-            <%= listing.swipes_reserved %> reservations
-        </span>
-        </div>
-        <div class="">
-        <%= link_to user_path(listing.user_id) do%>
-            <p class="card-title my-2"><%= listing.user.username %> | $<%= listing.price %></p>
-        <% end %>     
-        <p class="card-price">
-            <%= listing.title %>
-        </p>       
-        </div>
+<div class="card listing-card mb-3" style="">    
+    <img class="card-img-top" src=<%= image_url(Listing.images[listing.location]) %> alt="Card image">
+    
+    <div class="card-img-overlay">
+      <div class="card-overlay-text">
+        <span class="listing-card-location"><%= Listing.locations.key(listing.location) %></span>
+        <span class="listing-card-price">$<%= number_with_precision(listing.price, :precision => 2) %></span>
+      </div>
     </div>
-
-    <div class="card-footer">
-        <% if user_signed_in? && current_user.id == listing.user_id %>
-        <div style="display: inline-block;">
-            <%= link_to edit_listing_path(listing), class:"mr-1" do%>
-            <span class="icon"><i class="fa fa-pencil" aria-hidden="true"></i></span>
-            <% end %>
-            <%= link_to listing, method: :delete, data: {confirm: "Are you sure you want to delete this listing?"} do%>
-            <span class="icon"><i class="fa fa-trash-o" aria-hidden="true"></i></span>
-            <% end %>
-        </div>
+    
+    <div class="card-body listing-card-body bg-transparent" style="background-color: rgba(245, 245, 245, 0.4);">
+      <div class="listing-card-body-title">
+        <img class="listing-card-gravatar-img" src="<%= gravatar_image_url(listing.user.email) %>">
+        <%= link_to user_path(listing.user_id) do%>
+          <p class="card-title my-2" style="color: white;"><%= listing.user.username %></p>
         <% end %>
-        <span class="card-location float-right">
-        <span class="icon"><i class="fa fa-map-pin" aria-hidden="true"></i></span> <%= Listing.locations.key(listing.location) %>
+        <span class="float-right card-reservations">
+          <%= listing.swipes_reserved %>/<%= listing.available_swipes %> Reserved
         </span>
+      </div>
+    
+      <div class="listing-card-description">
+        <span><%= listing.description  %></span>
+      </div>
+    </div>
+    
+    <div class="card-footer">
+      <% if user_signed_in? && current_user.id == listing.user_id %>
+        <div style="display: inline-block;">
+          <%= link_to edit_listing_path(listing), class:"mr-1" do%>
+          <span class="icon"><i class="fa fa-pencil" aria-hidden="true"></i></span>
+          <% end %>
+          <%= link_to listing, method: :delete, data: {confirm: "Are you sure you want to delete this listing?"} do%>
+          <span class="icon"><i class="fa fa-trash-o" aria-hidden="true"></i></span>
+          <% end %>
+        </div>
+      <% end %>
+      <span class="card-status float-right">
+        <% status, color = listingStatus(listing, current_user) %>
+        <span style="color: <%= color %>"><%= status %></span>
     </div>      
 </div>

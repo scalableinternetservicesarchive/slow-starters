@@ -6,20 +6,23 @@
     </p>
     
     <p>
+      <strong>Location:</strong>
+      <%= Listing.locations.key(@listing.location) %>
+    </p>
+    
+    <p>
+      <strong>Time:</strong>
+      <%= @listing.time %>
+    </p>
+    
+    <p>
       <strong>Price:</strong>
-      <%= @listing.price %>
+      $<%= number_with_precision(@listing.price, :precision => 2) %>
     </p>
     
     <p>
       <strong>Description:</strong>
       <%= @listing.description %>
-    </p>
-    
-    <p>
-      location: <%= @listing.location %> | 
-      avaialble: <%= @listing.available_swipes %> | 
-      reserved: <%= @listing.swipes_reserved %> | 
-      has_completed: <%= @listing.has_completed ? "true" : "false"%> 
     </p>
     
     <p>
@@ -38,6 +41,7 @@
       <% if current_user != @listing.user and @reservations.find{|reservation| reservation.user_id == current_user.id} == nil%>
         <%= render "reservation_form" %>
       <% end %>
+      <%= render "reservation_form" %>
       <%= render "reservation_index" %>
     </div>
   <% end %>
