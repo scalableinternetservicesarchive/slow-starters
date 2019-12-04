@@ -1,19 +1,27 @@
 <%= link_to listing do %>
-  <div class="card mb-3" style="">          
-    <div class="card-body">
-      <div class="">
-        <%= gravatar_image_tag(listing.user.email, size: 64, alt: listing.user.username) %>
+  <div class="card mb-3" style="">    
+    <img class="card-img-top" src=<%= image_url("bruin_cafe.jpg") %> alt="Card image">
+    
+    <div class="card-img-overlay">
+      <div class="card-overlay-text">
+        <span class="card-location align-bottom"><%= Listing.locations.key(listing.location) %></span>
+        <span class="card-price float-right align-bottom">$<%= number_with_precision(listing.price, :precision => 2) %></span>
+      </div>
+    </div>
+    
+    <div class="card-body bg-transparent" style="background-color: rgba(245, 245, 245, 0.4);">
+      <div class="card-body-title">
+        <img class="listing-card-gravatar-img" src="<%= gravatar_image_url(listing.user.email) %>">
+        <%= link_to listing do%>
+          <p class="card-title my-2" style="color: white;"><%= listing.user.username %></p>
+        <% end %>
         <span class="float-right card-reservations">
-          <%= listing.swipes_reserved %> reservations
+          <%= listing.swipes_reserved %>/<%= listing.available_swipes %> Reserved
         </span>
       </div>
-      <div class="">
-        <%= link_to listing do%>
-          <p class="card-title my-2"><%= listing.user.username %></p>
-        <% end %>
-        <p class="card-price">
-          $<%= listing.price %>
-        </p>
+      
+      <div class="card-description">
+        <span><%= listing.description  %></span>
       </div>
     </div>
 
@@ -29,8 +37,9 @@
         </div>
       <% end %>
       <span class="card-location float-right">
-        <span class="icon"><i class="fa fa-map-pin" aria-hidden="true"></i></span> <%= Listing.locations.key(listing.location) %>
+        <span class="icon"><%= Listing.locations.key(listing.location) %>
       </span>
     </div>      
   </div>
+
 <% end %>

@@ -8,7 +8,7 @@
         </div>
         <div class="">
         <%= link_to user_path(listing.user_id) do%>
-            <p class="card-title my-2"><%= listing.user.username %> | $<%= listing.price %></p>
+            <p class="card-title my-2"><%= listing.user.username %> | $<%= number_with_precision(listing.price, :precision => 2) %></p>
         <% end %>     
         <p class="card-price">
             <%= listing.title %>

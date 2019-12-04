@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20191121032634) do
+ActiveRecord::Schema.define(version: 20191126010011) do
 
   create_table "listings", force: :cascade do |t|
     t.string "title"
@@ -24,6 +24,12 @@ ActiveRecord::Schema.define(version: 20191121032634) do
     t.integer "swipes_reserved", default: 0
     t.datetime "time"
     t.boolean "has_completed", default: false
+    t.index ["available_swipes"], name: "index_listings_on_available_swipes"
+    t.index ["created_at"], name: "index_listings_on_created_at"
+    t.index ["location"], name: "index_listings_on_location"
+    t.index ["price"], name: "index_listings_on_price"
+    t.index ["swipes_reserved"], name: "index_listings_on_swipes_reserved"
+    t.index ["user_id"], name: "index_listings_on_user_id"
   end
 
   create_table "messages", force: :cascade do |t|
