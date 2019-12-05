@@ -20,7 +20,7 @@ html, body{
 
 body{
     height: 100%;
-    background: linear-gradient(0deg,rgba(0, 0, 0, 0.3),rgba(0, 0, 0, 0.3)), url('/assets/UCLA.png') center no-repeat;
+    background: linear-gradient(0deg,rgba(0, 0, 0, 0.3),rgba(0, 0, 0, 0.3)), url('https://i.imgur.com/7PQgwFZ.png') center no-repeat;
     background-size: cover;
     background-attachment: fixed;
     color: rgba(255, 255, 255, 0.7);
@@ -34,6 +34,9 @@ body{
     color: #F7F7F7 !important;
 }
 
+a {
+    color: lightblue;
+}
 
 hr{
     border-top: 1px solid rgba(255,255,255, 0.5);
